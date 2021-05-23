@@ -1,0 +1,64 @@
+PhotoViewWidget:
+
+<ImageButton@ButtonBehavior+Image>:
+
+
+<PhotoViewWidget>:
+    orientation:"vertical"
+    spacing:"5dp"
+    BoxLayout:
+        size_hint:1,.1
+        orientation:"horizontal"
+        BoxLayout:
+            orientation:"horizontal"
+            GridLayout:
+                cols:2
+                size_hint:.1,1
+                ImageButton:
+                    source:"images/open.png"
+                    on_press:root.show_load()
+            BoxLayout:
+                size_hint:.8,1
+                Label:
+                    id:name
+                    text:""
+                    
+            GridLayout:
+                
+                size_hint:.2,1
+                cols:2
+                #spacer
+
+    BoxLayout:
+        size_hint:1,.8
+        orientation:"horizontal"
+        spacing:.1
+        
+        BoxLayout:
+            orientation:"vertical"
+            size_hint:.25,1
+            id:details
+        Image:
+            size_hint:.7,1
+            id:imageView
+            source:"images/share.png"            
+
+       
+<LoadDialog>:
+    BoxLayout:
+        size: root.size
+        pos: root.pos
+        orientation: "vertical"
+        FileChooserListView:
+            id: filechooser
+        BoxLayout:
+            size_hint_y: None
+            height: 30
+            Button:
+                text: "Cancel"
+                on_release: root.cancel()
+
+            Button:
+                text: "Load"
+                on_release: root.load(filechooser.path, filechooser.selection)
+            
